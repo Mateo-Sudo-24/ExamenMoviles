@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/catalogo"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ plan?.nombre || 'Detalle del Plan' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="plan">
+  <div class="plan-image-header" [style.background-image]="'url(' + (plan.imagenUrl || 'assets/images/default-plan.jpg') + ')'">
+    <h2>{{ plan.nombre }}</h2>
+  </div>
+
+  <div class="ion-padding">
+    <h3>${{ plan.precio }}/mes</h3>
+    <p>{{ plan.descripcion }}</p>
+
+    <ion-list lines="full">
+      <ion-list-header>
+        <h4>Características Técnicas</h4>
+      </ion-list-header>
+      <ion-item>
+        <ion-icon name="phone-portrait-outline" slot="start"></ion-icon>
+        <ion-label>Datos Móviles: {{ plan.datos }} GB</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="call-outline" slot="start"></ion-icon>
+        <ion-label>Minutos: {{ plan.minutos }}</ion-label>
+      </ion-item>
+       <ion-item>
+        <ion-icon name="chatbubbles-outline" slot="start"></ion-icon>
+        <ion-label>SMS: {{ plan.sms }}</ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <ion-footer class="ion-no-border" *ngIf="isLoggedIn">
+    <ion-toolbar>
+      <ion-button expand="block" (click)="contratar()" class="contratar-button">
+        Contratar Plan
+      </ion-button>
+    </ion-toolbar>
+  </ion-footer>
+</ion-content>

@@ -1,0 +1,32 @@
+.splash-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+  background: var(--ion-color-primary, #0033a0); // Tigo Blue
+  color: white;
+}
+
+.logo {
+  max-width: 150px;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+ion-spinner {
+  margin-bottom: 20px;
+  width: 50px;
+  height: 50px;
+}
+
+p {
+  font-size: 1rem;
+  color: #f0f0f0;
+}

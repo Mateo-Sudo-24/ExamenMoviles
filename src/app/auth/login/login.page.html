@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Iniciar Sesión</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="login-container">
+    <div class="header-section">
+      <h2>Bienvenido a Tigo</h2>
+      <p>Ingresa para descubrir nuestros planes</p>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <ion-item lines="full">
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="email" formControlName="email" required></ion-input>
+      </ion-item>
+      <div class="error-message" *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid">
+        <small>Por favor ingresa un email válido</small>
+      </div>
+
+      <ion-item lines="full">
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input type="password" formControlName="password" required></ion-input>
+      </ion-item>
+      <div class="error-message" *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">
+        <small>La contraseña debe tener al menos 6 caracteres</small>
+      </div>
+
+      <ion-button expand="block" type="submit" [disabled]="loginForm.invalid" class="login-button">
+        <ion-icon slot="start" name="log-in-outline"></ion-icon>
+        Ingresar
+      </ion-button>
+    </form>
+
+    <!-- Separador -->
+    <div class="divider">
+      <span>o</span>
+    </div>
+
+    <!-- Botón para continuar como invitado -->
+    <ion-button expand="block" fill="outline" color="medium" (click)="continueAsGuest()" class="guest-button">
+      <ion-icon slot="start" name="eye-outline"></ion-icon>
+      Continuar como Invitado
+    </ion-button>
+
+    <div class="footer-links">
+      <a (click)="goToRegister()">¿No tienes cuenta? Regístrate</a>
+    </div>
+  </div>
+</ion-content>

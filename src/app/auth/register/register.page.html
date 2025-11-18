@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/login"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="register-container">
+    <div class="header-section">
+      <h2>Crea tu Cuenta</h2>
+      <p>Es rápido y fácil.</p>
+    </div>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+      <ion-item lines="full">
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="email" formControlName="email" required></ion-input>
+      </ion-item>
+      
+      <ion-item lines="full">
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input type="password" formControlName="password" required></ion-input>
+      </ion-item>
+
+      <ion-item lines="full">
+        <ion-label position="floating">Confirmar Contraseña</ion-label>
+        <ion-input type="password" formControlName="confirmPassword" required></ion-input>
+      </ion-item>
+      <div *ngIf="registerForm.errors?.['mismatch'] && registerForm.get('confirmPassword')?.touched" class="error-message">
+        Las contraseñas no coinciden.
+      </div>
+
+      <ion-button expand="block" type="submit" [disabled]="registerForm.invalid" class="register-button">
+        Crear Cuenta
+      </ion-button>
+    </form>
+
+    <div class="footer-links">
+      <a (click)="goToLogin()">¿Ya tienes cuenta? Inicia Sesión</a>
+    </div>
+  </div>
+</ion-content>

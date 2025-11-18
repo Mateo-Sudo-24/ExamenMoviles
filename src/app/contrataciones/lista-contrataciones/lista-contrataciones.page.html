@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Solicitudes de Contratación</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item-sliding *ngFor="let c of contrataciones">
+      <ion-item>
+        <ion-label>
+          <h3>{{ c.userName }}</h3>
+          <p>{{ c.planName }} - {{ c.fecha | date:'short' }}</p>
+        </ion-label>
+        <ion-chip slot="end" [color]="c.estado === 'PENDIENTE' ? 'warning' : 'medium'">
+          {{ c.estado }}
+        </ion-chip>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option color="success" (click)="updateEstado(c.id, 'APROBADO')">
+          <ion-icon name="checkmark-circle-outline" slot="start"></ion-icon>
+          Aprobar
+        </ion-item-option>
+        <ion-item-option color="danger" (click)="updateEstado(c.id, 'RECHAZADO')">
+          <ion-icon name="close-circle-outline" slot="start"></ion-icon>
+          Rechazar
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

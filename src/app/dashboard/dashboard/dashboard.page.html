@@ -1,0 +1,82 @@
+<ion-header translucent="true">
+  <ion-toolbar color="primary">
+    <ion-title>Panel de Asesor</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!-- Tarjeta de Gestión Principal -->
+  <ion-card class="management-card">
+    <ion-card-header>
+      <ion-card-title>Gestión de Planes</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Administra el catálogo de planes móviles. Puedes crear, editar o eliminar planes.</p>
+      <ion-button expand="block" (click)="createPlan()" class="create-button">
+        <ion-icon name="add-circle-outline" slot="start"></ion-icon>
+        Crear Nuevo Plan
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Divisor y Título de la Lista -->
+  <ion-list-header class="list-title">
+    Planes Activos
+  </ion-list-header>
+
+  <!-- Lista de Planes en Tarjetas -->
+  <div *ngIf="planes.length > 0; else noPlanes">
+    <ion-card *ngFor="let plan of planes" class="plan-card">
+      <ion-card-header>
+        <div class="card-title-container">
+          <ion-card-title>{{ plan.nombre }}</ion-card-title>
+          <ion-chip color="success">${{ plan.precio }}/mes</ion-chip>
+        </div>
+        <!-- Si tienes un campo de promoción, lo puedes mostrar aquí -->
+        <ion-card-subtitle *ngIf="plan.promocion">{{ plan.promocion }}</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <p class="plan-description">{{ plan.descripcion || 'Este plan no tiene una descripción detallada.' }}</p>
+        <div class="plan-features">
+          <div class="feature-item">
+            <ion-icon name="phone-portrait-outline" color="primary"></ion-icon>
+            <span>{{ plan.datos_moviles }}</span>
+          </div>
+          <div class="feature-item">
+            <ion-icon name="call-outline" color="primary"></ion-icon>
+            <span>{{ plan.minutos_voz }}</span>
+          </div>
+        </div>
+      </ion-card-content>
+
+      <!-- Botones de Acción -->
+      <ion-footer class="ion-no-border card-footer">
+        <ion-row>
+          <ion-col>
+            <ion-button fill="clear" expand="block" (click)="editPlan(plan.id)">
+              <ion-icon slot="start" name="pencil"></ion-icon>
+              Editar
+            </ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button fill="clear" expand="block" color="danger" (click)="deletePlan(plan.id)">
+              <ion-icon slot="start" name="trash"></ion-icon>
+              Eliminar
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-footer>
+    </ion-card>
+  </div>
+
+  <!-- Estado de Carga o Vacío -->
+  <ng-template #noPlanes>
+    <div class="empty-state ion-padding">
+      <ion-icon name="file-tray-outline" class="empty-icon"></ion-icon>
+      <h3>No hay planes activos</h3>
+      <p>Crea un nuevo plan para empezar a administrar el catálogo.</p>
+    </div>
+  </ng-template>
+
+</ion-content>

@@ -1,0 +1,37 @@
+ion-item {
+  margin-bottom: 16px;
+}
+
+.image-upload-section {
+  margin-top: 24px;
+  position: relative;
+
+  .image-placeholder {
+    border: 2px dashed var(--ion-color-medium);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    background: #f9f9f9;
+
+    ion-icon {
+      font-size: 3rem;
+      color: var(--ion-color-primary);
+    }
+  }
+
+  .file-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+  }
+}
+
+.save-button {
+  margin-top: 30px;
+  height: 48px;
+}

@@ -1,0 +1,41 @@
+.contratacion-card {
+  margin: 16px;
+  border-radius: 10px;
+}
+
+ion-item h2 {
+  font-weight: bold;
+  color: var(--ion-color-dark);
+}
+
+ion-chip {
+  font-weight: 500;
+}
+
+.chat-button {
+  --background: var(--ion-color-secondary);
+  color: white;
+  margin: 0;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+  padding: 20px;
+  color: var(--ion-color-medium);
+
+  ion-icon {
+    font-size: 5rem;
+  }
+
+  h3 {
+    margin-top: 16px;
+    font-weight: bold;
+  }
+}

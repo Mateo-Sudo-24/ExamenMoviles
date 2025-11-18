@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dashboard"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Crear/Editar Plan</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form>
+    <ion-item>
+      <ion-label position="floating">Nombre del Plan</ion-label>
+      <ion-input placeholder="Ej: Plan Smart 10GB"></ion-input>
+    </ion-item>
+    
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating">Precio Mensual ($)</ion-label>
+            <ion-input type="number" placeholder="19.99"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating">Gigas de Datos</ion-label>
+            <ion-input type="number" placeholder="10"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-item>
+      <ion-label position="floating">Minutos de Llamadas</ion-label>
+      <ion-input type="number" placeholder="200"></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label position="floating">Descripción</ion-label>
+      <ion-textarea placeholder="Describe las características del plan..."></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Promoción (Opcional)</ion-label>
+      <ion-input placeholder="Ej: ¡Primer mes gratis!"></ion-input>
+    </ion-item>
+    
+    <div class="image-upload-section">
+      <ion-label>Imagen del Plan</ion-label>
+      <div class="image-placeholder">
+        <ion-icon name="cloud-upload-outline"></ion-icon>
+        <p>Toca para subir una imagen</p>
+      </div>
+      <input type="file" class="file-input" accept="image/png, image/jpeg">
+    </div>
+
+    <ion-button expand="block" type="submit" class="save-button">
+      Guardar Plan
+    </ion-button>
+  </form>
+</ion-content>

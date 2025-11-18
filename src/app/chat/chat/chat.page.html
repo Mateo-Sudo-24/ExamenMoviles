@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/mis-contrataciones"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Chat con Asesor</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="message-list">
+    <div *ngFor="let msg of messages" class="message-wrapper" 
+         [class.sent]="msg.userId === authService.getCurrentUser()?.id"
+         [class.received]="msg.userId !== authService.getCurrentUser()?.id">
+      <div class="message-bubble">
+        <p class="message-text">{{ msg.texto }}</p>
+        <span class="timestamp">{{ msg.timestamp | date:'shortTime' }}</span>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar class="chat-input-toolbar">
+    <ion-textarea [(ngModel)]="newMessage" placeholder="Escribe un mensaje..." autoGrow="true"></ion-textarea>
+    <ion-button slot="end" (click)="sendMessage()" [disabled]="!newMessage.trim() || sending"> <!-- Removido ?. ya que newMessage es string -->
+      <ion-icon name="send" *ngIf="!sending"></ion-icon>
+      <ion-spinner name="crescent" *ngIf="sending"></ion-spinner>
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

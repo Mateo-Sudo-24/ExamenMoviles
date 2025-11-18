@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Mis Contrataciones</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="contrataciones.length > 0; else noContrataciones">
+    <ion-card *ngFor="let c of contrataciones" class="contratacion-card">
+      <ion-item lines="none">
+        <ion-label>
+          <h2>{{ c.planNombre }}</h2>
+          <p>Fecha: {{ c.fecha | date:'mediumDate' }}</p>
+        </ion-label>
+        <ion-chip [color]="c.estado === 'APROBADO' ? 'success' : (c.estado === 'PENDIENTE' ? 'warning' : 'danger')">
+          <ion-label>{{ c.estado }}</ion-label>
+        </ion-chip>
+      </ion-item>
+      <ion-button expand="full" (click)="openChat(c.id)" class="chat-button">
+        <ion-icon name="chatbubbles-outline" slot="start"></ion-icon>
+        Chat con Asesor
+      </ion-button>
+    </ion-card>
+  </ion-list>
+
+  <ng-template #noContrataciones>
+    <div class="empty-state">
+      <ion-icon name="document-text-outline"></ion-icon>
+      <h3>No tienes contrataciones</h3>
+      <p>Explora nuestro catálogo para encontrar el plan perfecto para ti.</p>
+    </div>
+  </ng-template>
+</ion-content>

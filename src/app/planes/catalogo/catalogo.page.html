@@ -1,0 +1,89 @@
+<!-- Header -->
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Catálogo de Planes</ion-title>
+    <ion-buttons slot="end">
+      <ion-button *ngIf="!isAuthenticated" (click)="goToLogin()">
+        <ion-icon slot="start" name="log-in-outline"></ion-icon>
+        Ingresar
+      </ion-button>
+      <ion-button *ngIf="isAuthenticated" (click)="logout()">
+        <ion-icon slot="start" name="log-out-outline"></ion-icon>
+        Salir
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- Loading -->
+  <div *ngIf="loading" class="ion-text-center ion-padding">
+    <ion-spinner name="crescent"></ion-spinner>
+    <p>Cargando planes...</p>
+  </div>
+
+  <!-- Error -->
+  <div *ngIf="error" class="ion-text-center ion-padding" style="color: red;">
+    <ion-icon name="alert-circle" size="large"></ion-icon>
+    <p>{{ error }}</p>
+  </div>
+
+  <!-- Sin planes -->
+  <div *ngIf="!loading && !error && planes.length === 0" class="ion-text-center ion-padding">
+    <ion-icon name="document-text-outline" size="large" color="medium"></ion-icon>
+    <h3>No hay planes disponibles</h3>
+    <p>Contáctanos por chat si necesitas ayuda</p>
+  </div>
+
+  <!-- Lista de planes -->
+  <ion-list *ngIf="planes.length > 0">
+    <ion-card *ngFor="let plan of planes" class="plan-card" button (click)="viewPlan(plan.id)">
+      <ion-card-header>
+        <ion-card-title>{{ plan.nombre }}</ion-card-title>
+        <ion-card-subtitle class="ion-text-bold" color="primary">
+          {{ plan.precio | currency:'USD':'symbol':'1.0-0' }}/mes
+        </ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <p>{{ plan.descripcion }}</p>
+
+        <div class="features">
+          <ion-chip>
+            <ion-icon name="phone-portrait"></ion-icon>
+            <ion-label>{{ plan.datos }} GB</ion-label>
+          </ion-chip>
+          <ion-chip>
+            <ion-icon name="call"></ion-icon>
+            <ion-label>{{ plan.minutos }} min</ion-label>
+          </ion-chip>
+        </div>
+
+        <div class="actions mt-3">
+          <ion-button expand="block" color="primary" (click)="viewPlan(plan.id); $event.stopPropagation()">
+            Ver Detalles
+          </ion-button>
+
+          <ion-button
+            expand="block"
+            fill="outline"
+            color="secondary"
+            routerLink="/chat/general"
+            routerDirection="forward">
+            <ion-icon slot="start" name="chatbubbles-outline"></ion-icon>
+            Chatear con Asesor
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+
+  <!-- FAB Chat -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="secondary" routerLink="/chat/general">
+      <ion-icon name="chatbubbles"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>
